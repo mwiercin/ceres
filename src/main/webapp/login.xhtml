@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <f:view contentType="text/html">
+        <h:head>
+        </h:head>
+        <h:body>
+            <p:layout fullPage="true">
+                <p:layoutUnit position="center">
+                    <div align="center" style="">
+                        <h:form  id="loginFormId" prependId="false">
+                            <div id="loginFieldsPnlId">
+                                <div id="loginFieldUsrContId">
+                                    <h:outputText id="outTxtUserNameId" value="Username: "/>
+                                    <h:inputText id="userName" required="true" value="#{loginBean.userName}" requiredMessage="Please enter username"/>
+                                    <h:outputLabel id="outLblUserNameId" for="userName"/>
+                                </div>
+                                <div id="loginFieldPassContId">
+                                    <h:outputText id="outTxtPasswordId" value="Password: "/>
+                                    <h:inputSecret id="password"  required="true" value="#{loginBean.password}" requiredMessage="Please enter password"/>
+                                    <h:outputLabel id="outLblPasswordId" for="password"/>
+                                </div>
+                            </div>
+                            <div id="loginBtnPanelId">
+                                <h:commandButton id="btnLoginId" value="Login" action="#{loginBean.login}" styleClass="loginPanelBtn"/>
+                                <h:commandButton id="btnCancelId" value="Cancel" action="#{loginBean.cancel}" styleClass="loginPanelBtn" immediate="true"/>
+                            </div>
+                        </h:form>
+                    </div>
+                    <div>
+                        <h:messages/>
+                    </div>
+                </p:layoutUnit>
+            </p:layout>
+        </h:body>
+    </f:view>
+</html>

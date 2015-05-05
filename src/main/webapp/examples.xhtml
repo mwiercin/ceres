@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:sec="http://www.springframework.org/security/tags">
+
+    <sec:authorize access="hasRole('supervisor')">
+
+        This content will only be visible to users who have
+        the "supervisor" authority in their list of <tt>GrantedAuthority</tt>s.
+
+    </sec:authorize>
+
+    <sec:authorize url="/admin">
+
+        This content will only be visible to users who are authorized to send requests to the "/admin" URL.
+
+    </sec:authorize>
+
+    <sec:authorize ifAllGranted="ROLE_FOO, ROLE_BAR">
+        Lorem ipsum dolor sit amet
+    </sec:authorize>
+
+    <sec:authorize ifNotGranted="ROLE_FOO, ROLE_BAR">
+        Lorem ipsum dolor sit amet
+    </sec:authorize>
+
+    <sec:authorize ifAnyGranted="ROLE_FOO, ROLE_BAR">
+        Lorem ipsum dolor sit amet
+    </sec:authorize>
+
+    <!-- Rendered only if user has all of the listed roles -->
+    <h:outputText value="Lorem ipsum dolor sit amet" rendered="#{sec:areAllGranted('ROLE_FOO, ROLE_BAR')}"/>
+
+    <!-- Rendered only if user does not have any of the listed roles -->
+    <h:outputText value="Lorem ipsum dolor sit amet" rendered="#{sec:areNotGranted('ROLE_FOO, ROLE_BAR')}"/>
+
+    <!-- Rendered only if user has any of the listed roles -->
+    <h:outputText value="Lorem ipsum dolor sit amet" rendered="#{sec:areAnyGranted('ROLE_FOO, ROLE_BAR')}"/>
+
+    <!-- Rendered only if user has access to given HTTP method/URL as defined in Spring Security configuration -->
+    <h:outputText value="Lorem ipsum dolor sit amet" rendered="#{sec:isAllowed('/secured/foo', 'POST')}"/>
+
+
+<!--                                    <p:menuitem value="Forum" url="http://forum.primefaces.org/" rendered="#{request.isUserInRole('CRS_USER')}"/>
+                            <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" rendered="#{request.isUserInRole('CRS_USER1')}"/>-->
+</html>
